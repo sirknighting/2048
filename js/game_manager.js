@@ -152,7 +152,7 @@ GameManager.prototype.move = function (direction) {
       cell = { x: x, y: y };
       tile = self.grid.cellContent(cell);
 
-      if (tile) {
+      if (tile && tile.values.value!=0) {
         var positions = self.findFarthestPosition(cell, vector);
         var next      = self.grid.cellContent(positions.next);
 
@@ -184,7 +184,8 @@ GameManager.prototype.move = function (direction) {
   });
 
   if (moved) {
-    this.addRandomTile();
+    //The below is unnecessary in puzzle mode.
+    //this.addRandomTile(); 
 
     if (!this.movesAvailable()) {
       this.over = true; // Game over!
